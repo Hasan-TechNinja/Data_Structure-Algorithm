@@ -1,16 +1,24 @@
-def binary(array, target):
-    L = 0
-    U = len(array) - 1
+def binary_search(arr, target):
+    low, high = 0, len(arr) - 1
 
-    while L < U:
-        mid = (L + U) // 2
-        if target == mid:
-            print(mid)
-        elif target < mid:
-            U == mid - 1
-        elif target >= mid:
-            L == mid + 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            return mid  # Target found, return the index
+        elif arr[mid] < target:
+            low = mid + 1  # Discard the left half
+        else:
+            high = mid - 1  # Discard the right half
 
-array = [3, 4, 7, 9, 10, 12, 14, 16, 18, 19, 20, 24, 27, 29, 30, 31, 37, 39, 40]
-target = 18
-print(binary(array, target))
+    return -1  # Target not found
+
+# Example usage:
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+target_value = 6
+
+result = binary_search(my_list, target_value)
+
+if result != -1:
+    print(f"Element {target_value} is present at index {result}.")
+else:
+    print(f"Element {target_value} is not present in the list.")
